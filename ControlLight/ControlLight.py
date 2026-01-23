@@ -24,7 +24,7 @@ import time
 import json
 import argparse
 
-from ControlSerial import ControlSerial
+from ControlSerial.ControlSerial import ControlSerial
 
 
 class Measurement():

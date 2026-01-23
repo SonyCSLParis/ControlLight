@@ -1,12 +1,32 @@
 # ControlLight
 
+[![Python Version](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](LICENSE)
+[![DOI](https://img.shields.io/badge/DOI-pending%20Zenodo-orange.svg)](https://zenodo.org)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey.svg)](https://github.com/Alienor134/UC2_Fluorescence_microscope)
+[![Arduino Compatible](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=Arduino&logoColor=white)](https://www.arduino.cc/)
+
+---
+
+## Module Information
+
+**Intended Audience**: Researchers, engineers, and makers working on laboratory automation, microscopy, robotics, or hardware-software interfacing. This module is designed for users who need flexible control of LEDs and other light sources from Python and Arduino, including generation of synchronized trigger signals for cameras or other instruments.
+
+**Related Modules**:
+- [ControlCamera](../ControlCamera/) - Camera acquisition interface
+- [ControlMotors](../ControlMotors/) - Motor and stage control
+- [ControlSerial](../ControlSerial/) - Python serial interface
+- [Main Project Documentation](https://alienor134.github.io/UC2_Fluorescence_microscope/docs/) - Complete microscope setup
+
+---
+
 This repository demonstrates how to control light sources with Arduino and Python, and output a trigger signal to synchronize a camera. 
 
-The codes rely on [Arduino](https://www.arduino.cc/) and [pyserial](https://github.com/pyserial/pyserial).
+The codes rely on [Arduino](https://www.arduino.cc/), [pyserial](https://github.com/pyserial/pyserial) and the [ControlSerial](../ControlSerial/) module.
 
 
 ## Pre-requisites
-- Install [RomiSerial](https://github.com/SonyCSLParis/CSL-Serial?tab=readme-ov-file) and the [Arduino](https://www.arduino.cc/en/software) software 
+- Install [ControlSerial](../ControlSerial/) and the [Arduino](https://www.arduino.cc/en/software) software 
 - The light sources are already set-up. Refer to the example gallery for ideas. 
 - The light sources can be controlled by a trigger, or pulse-width modulated signal (PWM) 
 - The code was tested on Windows and Linux
@@ -28,8 +48,8 @@ Here are the different hardware equipment the
 | Software | Version we used | Download |
 |----------|:-------------:|:-------------:|  
 | Arduino | 1.8.13 | [download](https://www.arduino.cc/en/software)
-| Python  | 3 |[install](https://github.com/Alienor134/Teaching/blob/master/Python/Installing_Anaconda_creating_environment.md)
-| ControlSerial | 1.0 | [install](https://github.com/SonyCSLParis/CSL-Serial?tab=readme-ov-file)
+| Python  | 3.7 |[install](https://github.com/Alienor134/Teaching/blob/master/Python/Installing_Anaconda_creating_environment.md)
+| ControlSerial | 1.0 | [install](../ControlSerial/)
 
 
 ## Codes and files provided :chart_with_upwards_trend:
@@ -71,7 +91,7 @@ Once the lights are configured, use `start_measurement` to begin the experiment.
 # Instructions:
 Download or clone the repository:
 ```
-git clone https://github.com/Alienor134/CSL-forge
+git clone https://github.com/SonyCSLParis/ControlLight.git
 ```
 
 ## Control the LEDs 
@@ -103,15 +123,40 @@ git clone https://github.com/Alienor134/CSL-forge
 </p>
 
 
-8. Test the control command: type: **#d[11,0,0,1,0,2,0,255]:xxxx**. It is a command to generate on and off output on pin 11. The pin stays on for 1 seconds with a period of 2 seconds, at intensity 255. It is later on embeded in a Pyton code for clarity. 
-   You should see a character sequence appear. Then type **#b[100,0]:xxxx** to start the experiment.
-   You should see the LEDs blink (frequency 0.5Hz). To stop the blinking, type **#e:xxxx**
+8. Test the control command: 
+```#d[11,0,0,1,0,2,0,255]:xxxx```
+```#d[pin, delay_s, delay_ms, time_high_s, time_high_ms, period_s, period_ms, value]:xxxx```
+
+11 → Arduino pin 11 (output pin for the light)
+0 → start delay in seconds
+0 → start delay in milliseconds
+→ start immediately
+1 → “on” time in seconds
+0 → “on” time in milliseconds
+→ LED on for 1 second each cycle
+2 → period in seconds
+0 → period in milliseconds
+→ one full cycle every 2 seconds
+255 → PWM value (0–255), i.e. full intensity when on
+So this command creates a pulse on pin 11: ON for 1 s, OFF for 1 s, repeating (0.5 Hz), at full brightness.
+
+It is a command to generate on and off output on pin 11. The pin stays on for 1 seconds with a period of 2 seconds, at intensity 255. It is later on embeded in a Python code for clarity. 
+You should see a character sequence appear. 
+
+1. To start the experiment type:
+```#b[100,0]:xxxx```
+```#b[duration_s, duration_ms]:xxxx```
+
+You should see the LEDs blink (frequency 0.5Hz). 
+
+10. Stop the blinking, type:
+``` #e:xxxx**```
 
 ## Install the library
 
 ```
 cd ControlLight
-python setup.py develop
+pip install -e .
 ```
 1. Try running the code: 
 
@@ -121,6 +166,26 @@ On Windows: ```python  ControlLight/ControlLight.py --port COMx``` by replacing 
 On Linux: ```python3  ControlLight/ControlLight.py --port /dev/ttyACM0```
 
 You should see the LED blink. 
+
+## Tests
+
+This repository currently provides example scripts rather than a full automated test suite. To quickly verify that your setup works:
+
+- Basic blink test:
+
+  ```bash
+  cd ControlLight
+  python test/test.py
+  ```
+
+- PWM/intensity test:
+
+  ```bash
+  cd ControlLight
+  python test/test2.py
+  ```
+
+Make sure the Arduino is flashed with the LEDControl firmware and connected on the expected COM port before running these scripts.
 
 2. Open the python code to see how it works. Open the python code [ControlLight.py](ControlLight/ControlLight.py). The code is commented and allows to control the frequency and amplitude of the LEDs. Set the parameters: 
 The content of interest is after ``if __name__ == __main__:`` 
