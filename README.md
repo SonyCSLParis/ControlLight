@@ -8,8 +8,6 @@
 
 ---
 
-## Module Information
-
 **Intended Audience**: Researchers and engineers who need precise LED/laser control and experiment synchronization from Python and Arduino—periodic pulses, PWM intensity control, and camera trigger generation for optogenetics and fluorescence imaging.
 
 
