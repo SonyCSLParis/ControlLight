@@ -10,13 +10,8 @@
 
 ## Module Information
 
-**Intended Audience**: Researchers, engineers, and makers working on laboratory automation, microscopy, robotics, or hardware-software interfacing. This module is designed for users who need flexible control of LEDs and other light sources from Python and Arduino, including generation of synchronized trigger signals for cameras or other instruments.
+**Intended Audience**: Researchers and engineers who need precise LED/laser control and experiment synchronization from Python and Arduino—periodic pulses, PWM intensity control, and camera trigger generation for optogenetics and fluorescence imaging.
 
-**Related Modules**:
-- [ControlCamera](../ControlCamera/) - Camera acquisition interface
-- [ControlMotors](../ControlMotors/) - Motor and stage control
-- [ControlSerial](../ControlSerial/) - Python serial interface
-- [Main Project Documentation](https://alienor134.github.io/UC2_Fluorescence_microscope/docs/) - Complete microscope setup
 
 ---
 
@@ -356,3 +351,74 @@ Remove all pulses and starts with a clear set-up. See [test5.py](./test/test5.py
 ## License
 
 This project is licensed under the [GNU General Public License v3.0](https://www.tldrlegal.com/license/gnu-general-public-license-v3-gpl-3)
+
+---
+
+## Version Control and Attribution
+
+This project follows **Open Source Hardware Association (OSHWA)** guidelines for version control and attribution.
+
+### Version Control Practice
+
+- **Repository**: Git-based version control with full commit history
+- **Submodule Structure**: Part of the UC2 Fluorescence Microscope parent repository
+- **Versioning**: Semantic versioning (MAJOR.MINOR.PATCH)
+- **Releases**: Tagged releases with automated testing via GitHub Actions
+
+### Attribution Requirements
+
+When using or modifying this software:
+
+1. **Credit the original authors**: Sony Computer Science Laboratories Paris (CSL Paris) and contributors
+2. **Maintain license notices**: Keep GPL-3.0 headers in source files
+3. **Document modifications**: Clearly state any changes made
+4. **Share derivatives**: Derivatives must be released under GPL-3.0 or compatible license
+
+### Contributing
+
+Contributions are tracked through:
+- Git commit history (automatic attribution)
+- Pull requests on GitHub
+- Contributor acknowledgments in release notes
+
+---
+
+## License and Legal Information
+
+### Software License
+
+This software is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+Full license text: [LICENSE](LICENSE)
+
+### Firmware License
+
+The Arduino firmware (LEDControl) used by this module is licensed under GPL-3.0.
+
+### Related Licenses
+
+- **Parent Project** (UC2 Fluorescence Microscope): Hardware under CERN-OHL-S-2.0, Software under GPL-3.0
+- **Documentation**: CC BY-SA 4.0
+
+---
+
+## 🔗 Cross-References and Navigation
+
+### Within UC2 Fluorescence Microscope Project
+
+- **Main Repository**: [UC2_Fluorescence_microscope](https://github.com/Alienor134/UC2_Fluorescence_microscope)
+- **Documentation Home**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/
+- **Build Instructions**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/build
+- **Bill of Materials**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/bill_of_materials
+- **Automation Guide**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/automate
+- **Examples**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/example
+
+### Related Control Modules
+
+| Module | Purpose | Documentation |
+|--------|---------|---------------|
+| [ControlSerial](../ControlSerial/) | Arduino-Python communication | [README](../ControlSerial/README.md) |
+| [ControlCamera](../ControlCamera/) | Camera acquisition and control | [README](../ControlCamera/README.md) |
+| [ControlMotors](../ControlMotors) | XYZ stage and motor control | [README](../ControlMotors/README.md) |
+| **ControlLight** | Laser and LED control | [README](README.md) (this file) |
+
