@@ -4,13 +4,13 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey.svg)](https://github.com/Alienor134/UC2_Fluorescence_microscope)
 [![Arduino Compatible](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=Arduino&logoColor=white)](https://www.arduino.cc/)
-[![DOI](https://zenodo.org/badge/716491439.svg)](https://doi.org/10.5281/zenodo.18484285)
+[![DOI](https://zenodo.org/badge/716491439.svg)](https://doi.org/10.5281/zenodo.18484285) 
 
 
 
 ---
 
-**Intended Audience**: Researchers and engineers who need precise LED/laser control and experiment synchronization from Python and Arduino—periodic pulses, PWM intensity control, and camera trigger generation for optogenetics and fluorescence imaging.
+**Intended Audience**: Researchers and engineers who need precise LED/laser control and experiment synchronization from Python and Arduino—periodic pulses, PWM intensity control, and camera trigger generation scientific experiments and in particular microscopy.
 
 
 ---
